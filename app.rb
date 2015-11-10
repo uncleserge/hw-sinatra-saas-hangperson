@@ -79,7 +79,7 @@ class HangpersonApp < Sinatra::Base
       redirect '/new'
     elsif (not @game.check_win_or_lose.eql? :win)
       flash[:message] = "You can't do this."
-      redirect 'show'
+      redirect '/show'
     end
     
     erb :win # You may change/remove this line
@@ -87,7 +87,12 @@ class HangpersonApp < Sinatra::Base
   
   get '/lose' do
     ### YOUR CODE HERE ###
-    redirect '/new' if @game.word.empty?
+    if @game.word.empty?
+      redirect '/new'
+    elsif (not @game.check_win_or_lose.eql? :lose)
+      flash[:message] = "You can't do this."
+      redirect '/show'
+    end
     erb :lose # You may change/remove this line
   end
   

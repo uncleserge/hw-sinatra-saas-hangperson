@@ -43,9 +43,8 @@ class HangpersonGame
   end
   
   def check_win_or_lose
-    attempts_num = @guesses.length + @wrong_guesses.length
-    return :win if self.word_with_guesses == @word
-    return :lose if attempts_num > 6
+    return :win if (not @word.empty?) && (self.word_with_guesses == @word)
+    return :lose if @wrong_guesses.length > 6
     return :play
   end
 
